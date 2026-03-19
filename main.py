@@ -8,6 +8,7 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -17,7 +18,7 @@ class AdData(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"status": "ok", "message": "광고 분석 API 작동중"}
+    return {"status": "ok"}
 
 @app.post("/analyze")
 def analyze(ad_data: AdData):
