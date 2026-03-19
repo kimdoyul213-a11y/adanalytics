@@ -25,7 +25,7 @@ export default function Home() {
     setLoading(true);
     setResult("");
     try {
-      const res = await fetch("http://127.0.0.1:8000/analyze", {
+      const res = await fetch("https://adanalytics-production.up.railway.app/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ data: testData }),
@@ -47,14 +47,12 @@ export default function Home() {
         <p className="text-gray-500 mb-8">
           GA4 + 네이버 광고 데이터를 AI가 분석해드립니다
         </p>
-
         <div className="bg-white rounded-2xl shadow p-6 mb-6">
           <h2 className="text-lg font-semibold mb-4">테스트 데이터</h2>
           <pre className="bg-gray-50 rounded-lg p-4 text-sm text-gray-600 overflow-auto">
             {JSON.stringify(testData, null, 2)}
           </pre>
         </div>
-
         <button
           onClick={analyze}
           disabled={loading}
@@ -62,7 +60,6 @@ export default function Home() {
         >
           {loading ? "AI 분석 중..." : "AI 분석 시작"}
         </button>
-
         {result && (
           <div className="bg-white rounded-2xl shadow p-6">
             <h2 className="text-lg font-semibold mb-4">분석 결과</h2>
